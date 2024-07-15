@@ -69,6 +69,18 @@ module.exports = (sequelize, DataTypes) => {
           },
         },
       },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: "Menu harus memiliki gambar",
+          },
+          notNull: {
+            msg: "Menu harus memiliki gambar",
+          },
+        },
+      },
     },
     {
       sequelize,

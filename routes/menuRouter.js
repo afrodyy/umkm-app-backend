@@ -6,11 +6,13 @@ const {
   updateMenu,
   deleteMenu,
 } = require("../controllers/menuController");
+const upload = require("../middleware/upload");
+const handleMulterError = require("../middleware/handleMulterError");
 
 router.get("/menu", getAllMenus);
 router.get("/menu/:id", getMenuById);
-router.post("/menu", createMenu);
-router.put("/menu/:id", updateMenu);
+router.post("/menu", upload.single("image"), handleMulterError, createMenu);
+router.put("/menu/:id", upload.single("image"), handleMulterError, updateMenu);
 router.delete("/menu/:id", deleteMenu);
 
 module.exports = router;

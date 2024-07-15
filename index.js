@@ -4,6 +4,7 @@ const port = 3030;
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const router = require("./routes/index");
+const path = require("path");
 
 app.use(bodyParser.json());
 
@@ -13,6 +14,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(router);
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 app.listen(port, () => {
   console.log(`App listening on ${port}`);
