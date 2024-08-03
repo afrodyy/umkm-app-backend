@@ -19,3 +19,5 @@ app.use("/images", express.static(path.join(__dirname, "public/images")));
 app.listen(port, () => {
   console.log(`App listening on ${port}`);
 });
+
+// Coba nanti deploy ke koyeb untuk backend api nya dan vercel untuk frontendnya, atau bisa juga menggunakan railway
