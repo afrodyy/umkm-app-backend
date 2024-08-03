@@ -8,7 +8,11 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      User.belongsTo(models.Role, { foreignKey: "roleId" });
+      User.belongsTo(models.Role, {
+        foreignKey: "roleId",
+        as: "role",
+        onDelete: "CASCADE",
+      });
     }
   }
   User.init(
@@ -102,6 +106,19 @@ module.exports = (sequelize, DataTypes) => {
           },
           notNull: {
             msg: "Kolom alamat pengguna harus diisi",
+          },
+        },
+      },
+      image: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: "images/user/user.png",
+        validate: {
+          notEmpty: {
+            msg: "Pengguna harus memiliki gambar",
+          },
+          notNull: {
+            msg: "Pengguna harus memiliki gambar",
           },
         },
       },
